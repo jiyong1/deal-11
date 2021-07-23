@@ -10,11 +10,15 @@
   cursor: pointer;
   .image-box.small {
     display: flex;
-    align-items: center;
     max-width: 50px;
     height: 50px;
     border: 1px solid #d7d7d7;
     border-radius: 8px;
+    img {
+	border-radius: $button-radius;
+	max-width: 100%;
+    	max-height: 100%;
+    }
   }
   .info-box {
     align-content: center;
@@ -34,42 +38,32 @@
         color: $content-grey;
       }
     }
-    .sale-status {
-      width: 90px;
-      height: 50px;
-      border: 1px solid #d7d7d7;
-      border-radius: 8px;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
   }
 }
 .chat-bubble-list-wrapper {
   height: 75vh;
   .chat-bubble-list {
     overflow: auto;
+    padding-bottom: 70px;
     .bubble-item-wrapper {
       padding: 18px 20px;
       display: flex;
       &.mine {
-        justify-content: flex-start;
-        .bubble-item {
-          padding: 10px;
-          width: max-content;
-          border: 1px solid #2ac1bc;
-          border-radius: 0px 8px 8px 8px;
-        }
-      }
-      &.opponent {
         justify-content: flex-end;
         .bubble-item {
           padding: 10px;
           width: max-content;
-
-          background: #2ac1bc;
+          border: 1px solid #2ac1bc;
           border-radius: 8px 0px 8px 8px;
+        }
+      }
+      &.opponent {
+        justify-content: flex-start;
+        .bubble-item {
+          padding: 10px;
+          width: max-content;
+          background: #2ac1bc;
+          border-radius: 0px 8px 8px 8px;
           color: white;
         }
       }

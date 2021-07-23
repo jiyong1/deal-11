@@ -7,6 +7,7 @@ import ChatBubbleList from './ChatBubbleList';
 import socket from './socket';
 
 import '../../scss/chatdetail.scss';
+import { $router } from '../../lib/router';
 
 export default class ChatDetailWrapper extends Component {
   template() {
@@ -49,9 +50,6 @@ class ChatDetail extends Component {
               <span class="product-price">${this.insertCurrencyComma(
                 price
               )}원</span>
-            </div>
-            <div class="sale-status">
-              ${status}
             </div>
           </div>
         </div>
@@ -134,9 +132,10 @@ class ChatDetail extends Component {
   }
 
   handleRightClick(e) {
-    if (!e.target.closest('.nav-bar-btn .exit')) return;
+    if (!e.target.closest('.nav-bar-btn.exit')) return;
     const { room } = this.store.getState('chatInfo');
     socket.emit('leaveRoom', { room });
+    $router.push('/menu', 1);
   }
 
   mounted() {

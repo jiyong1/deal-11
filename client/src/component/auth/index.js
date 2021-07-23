@@ -1,7 +1,6 @@
 import Component from '../../core/Component';
 import NavBar from '../shared/NavBar';
 import Button from '../shared/Button';
-import { BASE_URL } from '../../utils';
 
 import '../../scss/auth.scss';
 import { $router } from '../../lib/router';

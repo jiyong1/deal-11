@@ -4,9 +4,6 @@ import ChatList from './ChatList';
 import MyProduct from './MyProduct';
 import MyLike from './MyLike';
 
-import { $router } from '../../lib/router';
-import socket from '../Chat/socket';
-
 import 'moment/locale/ko';
 import '../../scss/menu.scss';
 

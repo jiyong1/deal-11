@@ -1,6 +1,6 @@
 import Component from '../../core/Component';
 import NavBar from '../shared/NavBar';
-import { BASE_URL, combineWithQueryString } from '../../utils';
+import { combineWithQueryString } from '../../utils';
 import { $router } from '../../lib/router';
 
 import '../../scss/category.scss';

@@ -46,9 +46,6 @@ function getPriceOriginal(text) {
   return numberArr.join('');
 }
 
-const BASE_URL = 'http://localhost:3000/api/v1';
-const AUTH_URL = 'http://localhost:3000';
-
 const combineWithQueryString = (url, qs) => {
   // let ret = url + '/?';
   // Object.keys(qs).forEach((key) => {
@@ -76,7 +73,6 @@ const categoryInfo = [
 export {
   isClass,
   isPromise,
-  BASE_URL,
   combineWithQueryString,
   priceChange,
   getPriceOriginal,

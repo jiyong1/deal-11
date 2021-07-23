@@ -1,22 +1,10 @@
 import Component from '../../core/Component';
 import moment from 'moment';
-import { BASE_URL } from '../../utils';
 import promise from '../../lib/api';
 import socket from '../Chat/socket';
 
 import '../../scss/chatlist.scss';
 import { $router } from '../../lib/router';
-
-const api = {
-  getToken: function () {
-    return localStorage.getItem('token');
-  },
-  fetchWithToken: function (url, method) {
-    return promise(url, 'GET', {
-      token: this.getToken(),
-    }).catch((err) => console.error(err));
-  },
-};
 
 export default class ChatListWrapper extends Component {
   template() {
@@ -33,24 +21,26 @@ export default class ChatListWrapper extends Component {
 
   getChatList() {
     const url = `${API_ENDPOINT}/api/v1/chat`;
-    api.fetchWithToken(url, 'GET').then((res) => {
-      const { rooms } = res;
-      this.store.dispatch('setRooms', rooms);
-      this.childReRender([
-        {
-          childClass: ChatList,
-          selector: '.chat-list',
-          props: {
-            rooms,
-            onClick: this.handleChatItemClick.bind(this),
+    promise(url, 'GET')
+      .then((res) => {
+        const { rooms } = res;
+        this.store.dispatch('setRooms', rooms);
+        this.childReRender([
+          {
+            childClass: ChatList,
+            selector: '.chat-list',
+            props: {
+              rooms,
+              onClick: this.handleChatItemClick.bind(this),
+            },
           },
-        },
-      ]);
-    });
+        ]);
+      })
+      .catch((err) => console.error(err));
   }
 
   setChatConnection(room) {
-    console.log('joinroom:', room);
+    // console.log('joinroom:', room);
     socket.emit('joinRoom', { room });
   }
 
@@ -78,7 +68,7 @@ export default class ChatListWrapper extends Component {
       chatTarget: sender,
     });
     this.saveChatItem = this.saveChatItem.bind(this);
-    api.fetchWithToken(url, 'GET').then(this.saveChatItem);
+    promise(url, 'GET').then(this.saveChatItem);
   }
 
   mounted() {
@@ -118,7 +108,9 @@ class ChatList extends Component {
             </div>
           </div>
           <div class="image-box">
-            <img src="${BASE_URL}${imageUrl[0]}" alt="product-image" />
+            <img src="${API_ENDPOINT}/api/v1${
+      imageUrl[0]
+    }" alt="product-image" />
           </div>
         </div>`;
   }
