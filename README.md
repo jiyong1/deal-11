@@ -78,18 +78,18 @@ client
 ```
 
 server
-├── db
+├── db // db 모델 스키마, 테이블 생성 자동화 로직 등이 있음
 ├── package-lock.json
 ├── package.json
-├── public
-├── app.js
-├── routes
+├── public // 이미지나 필요한 파일들의 저장소
+├── app.js // 서버 메인 파일
+├── routes // 라우트 폴더
 │   ├── chat
 │   ├── product
 │   ├── auth.js
 │   ├── index.js
 │   ├── location.js
-│   ├── query.js
+│   ├── query.js // 라우터에서 쓰이는 쿼리
 └── └── utils.js
 
 ```
@@ -100,7 +100,7 @@ server
 ```
 
 chat-server
-├── index.js
+├── index.js // socket.io 서버의 메인 파일
 ├── package-lock.json
 └── package.json
 
